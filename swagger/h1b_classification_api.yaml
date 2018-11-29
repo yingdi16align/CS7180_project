@@ -1,0 +1,117 @@
+swagger: '2.0'
+info:
+  title: H1B Classification API
+  version: "0.1"
+  description: An API that can classify H1B cases
+
+paths:
+  /health:
+    get:
+      summary: Checks the health of the service
+      description: Returns the health status of the service
+      operationId: h1b_classification_api.health
+      responses:
+        '200':
+          description: Service is healthy
+        '500':
+          description: Service is unhealthy
+
+  /predict:
+    post:
+      summary: Entrypoint to our prediction function
+      operationId: h1b_classification_api.predict
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      parameters:
+        - in: formData
+          name: case_submitted_day
+          required: true
+          description: Case submitted day
+          type: number
+        - in: formData
+          name: case_submitted_month
+          required: true
+          description: Case submitted month 
+          type: number
+        - in: formData
+          name: case_submitted_year
+          required: true
+          description: Case submitted year
+          type: number
+        - in: formData
+          name: decision_day
+          required: true
+          description: Decision day
+          type: number
+        - in: formData
+          name: decision_month
+          required: true
+          description: Decision made month
+          type: number
+        - in: formData
+          name: decision_year
+          required: true
+          description: Decision made year
+          type: number
+        - in: formData
+          name: soc_name
+          required: true
+          description: Occupation. Please check pdf for documentation
+          type: number
+        - in: formData
+          name: naics_code
+          required: true
+          description: Industry code associated with the employer
+          type: number
+        - in: formData
+          name: total_workers
+          required: true
+          description: Totao number of foreign workers requested by the employer
+          type: number
+        - in: formData
+          name: full_time_position
+          required: true
+          description: If full time position, Y=1, N=0
+          type: number
+        - in: formData
+          name: prevailing_wage
+          required: true
+          description: Prevailing wage for the job being requested for temporary labor condition.
+          type: number
+        - in: formData
+          name: pw_source
+          required: true
+          description: The pw source. CBA=0,DBA=1,OES=2,Other=3,SCA=4
+          type:  number
+        - in: formData
+          name: pw_source_year
+          required: true
+          description: Year the prevailing wage source was issued.
+          type: number
+        - in: formData
+          name: wage_rate_of_pay_from
+          required: true
+          description: Employer's proposed wage rate
+          type: number
+        - in: formData
+          name: h1b_dependent
+          required: true
+          description: If h1b dependent, Y=1,N=0
+          type: number
+        - in: formData
+          name: willful_violator
+          required: true
+          description: If employer is a willful violator, Y=1,N=0
+          type: number
+        - in: formData
+          name: worksite_state
+          required: true
+          description: The worksite state
+          type: number
+      responses:
+        '200':
+          description: Classification performed successfully
+        '500':
+          description: Unable to perform the classification
