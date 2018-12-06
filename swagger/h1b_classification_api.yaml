@@ -26,12 +26,26 @@ paths:
       - application/json
       parameters:
         - in: formData
+          name: model_select
+          enum: [1, 2, 3]
+          required: true
+          description: |
+            Model to use for predict.  
+            1 = Classification Tree  
+            2 = Random Forest  
+            3 = Naive Bayes
+          type: number
+        - in: formData
           name: case_submitted_day
+          enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 
+          15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 
+          30, 31]
           required: true
           description: Case submitted day
           type: number
         - in: formData
           name: case_submitted_month
+          enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
           required: true
           description: Case submitted month 
           type: number
@@ -41,49 +55,104 @@ paths:
           description: Case submitted year
           type: number
         - in: formData
-          name: decision_day
-          required: true
-          description: Decision day
-          type: number
-        - in: formData
-          name: decision_month
-          required: true
-          description: Decision made month
-          type: number
-        - in: formData
-          name: decision_year
-          required: true
-          description: Decision made year
-          type: number
-        - in: formData
           name: soc_name
+          enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 
+          15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 
+          30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 
+          45, 46, 47, 48, 49, 50, 51, 52, 53, 54]
           required: true
-          description: Occupation. Please check pdf for documentation
+          description: |
+            Occupation  
+            0 = ACCOUNTANTS  
+            1 = ACTUARIES   
+            2 = AGRICULTURE  
+            3 = ANALYSTS  
+            4 = ANIMAL HUSBANDARY  
+            5 = ARCHITECTURE    
+            6 = BUSINESS OPERATIONS SPECIALIST  
+            7 = CHIEF EXECUTIVES  
+            8 = COACHES AD SCOUTS  
+            9 = COMMUNICATIONS  
+            10 = COMPUTER OCCUPATION  
+            11 = CONSTRUCTION  
+            12 = COUNSELORS  
+            13 = CURATORS  
+            14 = DESIGNERS  
+            15 = DOCTORS  
+            16 = ECONOMISTS  
+            17 = EDUCATION  
+            18 = ENGINEERS  
+            19 = ENTERTAINMENT  
+            20 = EVENT PLANNER  
+            21 = FASHION DESIGNERS  
+            22 = FINANCE  
+            23 = FIRST LINE SUPERVISORS  
+            24 = FITNESS TRAINER  
+            25 = FOOD PREPARATION WORKERS  
+            26 = GRAPHIC DESIGNERS  
+            27 = HEALTHCARE  
+            28 = HISTORIANS  
+            29 = HUMAN RESOURCES  
+            30 = INSURANCE  
+            31 = INTERNIST  
+            32 = INTERPRETERS AND TRANSLATORS  
+            33 = IT MANAGERS  
+            34 = LAB TECHNICIANS  
+            35 = LAWYERS AND LEGAL SUPPORT WORKERS  
+            36 = LIBRARIAN  
+            37 = LOGISTICIANS  
+            38 = MANAGEMENT  
+            39 = MANAGERS  
+            40 = MERKETING  
+            41 = MATHEMATICIANS AND STATISTICIANS  
+            42 = MECHANICS  
+            43 = MULTIMEDIA ARTISTS AND ANIMATORS  
+            44 = OFFICE CLERKS  
+            45 = PUBLIC RELATIONS  
+            46 = REAK ESTATE  
+            47 = RELIGIOUS WORKERS  
+            48 = REPORTERS AND CORRESPONDENTS  
+            49 = SALES AND RELATED WORKERS  
+            50 = SCIENTIST  
+            51 = SOCIAL WORKERS  
+            52 = SURVEYORS  
+            53 = TRANSPORTATION  
+            54 = WRITERS EDITORS AND AUTHORS  
           type: number
         - in: formData
           name: naics_code
           required: true
-          description: Industry code associated with the employer
+          description: |
+            Industry code associated with the employer  
+            For examples: 541511, 611110
           type: number
         - in: formData
           name: total_workers
           required: true
-          description: Totao number of foreign workers requested by the employer
+          description: Total number of foreign workers requested by the employer
           type: number
         - in: formData
           name: full_time_position
+          enum: [0, 1]
           required: true
           description: If full time position, Y=1, N=0
           type: number
         - in: formData
           name: prevailing_wage
           required: true
-          description: Prevailing wage for the job being requested for temporary labor condition.
+          description: Prevailing wage for the job being requested for temporary labor condition. The unit is year.
           type: number
         - in: formData
           name: pw_source
+          enum: [0, 1, 2, 3, 4]
           required: true
-          description: The pw source. CBA=0,DBA=1,OES=2,Other=3,SCA=4
+          description: |
+            The pw source.  
+            CBA=0  
+            DBA=1  
+            OES=2  
+            Other=3  
+            SCA=4
           type:  number
         - in: formData
           name: pw_source_year
@@ -93,22 +162,48 @@ paths:
         - in: formData
           name: wage_rate_of_pay_from
           required: true
-          description: Employer's proposed wage rate
+          description: Employer's proposed wage rate. The unit is year.
           type: number
         - in: formData
           name: h1b_dependent
+          enum: [0, 1]
           required: true
           description: If h1b dependent, Y=1,N=0
           type: number
         - in: formData
           name: willful_violator
+          enum: [0, 1]
           required: true
           description: If employer is a willful violator, Y=1,N=0
           type: number
         - in: formData
           name: worksite_state
+          enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 
+          15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 
+          30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 
+          45, 46, 47, 48, 49, 50, 51, 52, 53, 54]
           required: true
-          description: The worksite state
+          description: |
+            The worksite state.  
+            0 = AK 1 = AL 2 = AR  
+            3 = AZ 4 = CA 5 = CO  
+            6 = CT 7 = DC 8 = DE  
+            9 = FL 10 = GA 11 = GU  
+            12 = HI 13 = IA 14 = ID  
+            15 = IL 16 = IN 17 = KS  
+            18 = KY 19 = LA 20 = MA  
+            21 = MD 22 = ME 23 = MI  
+            24 = MN 25 = MO 26 = MP  
+            27 = MS 28 = MT 29 = NC  
+            30 = ND 31 = NE 32 = NH  
+            33 = NJ 34 = NM 35 = NV  
+            36 = NY 37 = OH 38 = OK  
+            39 = OR 40 = PA 41 = PR  
+            42 = RI 43 = SC 44 = SD  
+            45 = TN 46 = TX 47 = UT  
+            48 = VA 49 = VI 50 = VT  
+            51 = WA 52 = WI 53 = WV  
+            54 = WY
           type: number
       responses:
         '200':
